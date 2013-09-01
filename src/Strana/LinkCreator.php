@@ -55,8 +55,8 @@ class LinkCreator {
 
     protected function addInfiniteScroll($output)
     {
-        if ($this->configHelper->getInfiniteScroll()) {
-            $output = $output . $this->infiniteScroll->getJs();
+        if (($config = $this->configHelper->getInfiniteScroll())  !== false) {
+            $output = $output . $this->infiniteScroll->getJs($config);
         }
 
         return $output;
