@@ -18,30 +18,30 @@ class LinkCreator {
         $totalPages = $this->configHelper->getTotalPages($totalRecords);
         $pages = $this->getPages($totalRecords, $this->configHelper->getLimit(), $currentPage, $this->configHelper->getMaximumPages());
 
-        $prevLinkClass = '';
-        $prevLinkHref = '#';
+        $prevLiClass = '';
+        $prevLinkHref = 'javascript:void(0)';
         if ($currentPage == 1) {
-            $prevLinkClass = 'disabled';
+            $prevLiClass = 'disabled';
         } else {
             $prevLinkHref = '?page='.($currentPage - 1);
         }
 
-        $nextLinkClass = '';
-        $nextLinkHref = '#';
+        $nextLiClass = '';
+        $nextLinkHref = 'javascript:void(0)';
         if ($currentPage == $totalPages) {
-            $nextLinkClass = 'disabled';
+            $nextLiClass = 'disabled';
         } else {
             $nextLinkHref = '?page='.($currentPage + 1);
         }
 
         $output = '<ul class="pagination">';
-        $output .= '<li><a class="' . $prevLinkClass . '" href="' . $prevLinkHref . '">&laquo;</a></li>';
+        $output .= '<li class="' . $prevLiClass . '"><a href="' . $prevLinkHref . '">&laquo;</a></li>';
         // TODO Append query string
         foreach($pages as $page) {
             $currentClass = $page == $currentPage ? 'active' : '';
             $output .= '<li class="' . $currentClass . '"><a href="?page=' . $page . '">' . $page . '</a></li>';
         }
-        $output .= '<li><a class="' . $nextLinkClass . '" href="' . $nextLinkHref . '">&raquo;</a></li>';
+        $output .= '<li class="' . $nextLiClass . '"><a href="' . $nextLinkHref . '">&raquo;</a></li>';
         $output .= '</ul>';
 
         return $output;
