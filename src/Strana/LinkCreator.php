@@ -35,13 +35,13 @@ class LinkCreator {
         }
 
         $output = '<ul class="pagination">';
-        $output .= '<li class="' . $prevLiClass . '"><a href="' . $prevLinkHref . '">&laquo;</a></li>';
+        $output .= '<li class="' . $prevLiClass . '"><a class="prev" href="' . $prevLinkHref . '">&laquo;</a></li>';
         // TODO Append query string
         foreach($pages as $page) {
             $currentClass = $page == $currentPage ? 'active' : '';
             $output .= '<li class="' . $currentClass . '"><a href="?page=' . $page . '">' . $page . '</a></li>';
         }
-        $output .= '<li class="' . $nextLiClass . '"><a href="' . $nextLinkHref . '">&raquo;</a></li>';
+        $output .= '<li class="' . $nextLiClass . '"><a class="next" href="' . $nextLinkHref . '">&raquo;</a></li>';
         $output .= '</ul>';
 
         return $output;
