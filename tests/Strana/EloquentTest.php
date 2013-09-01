@@ -33,11 +33,11 @@ class EloquentTest extends TestCase
             Capsule::table('sample')->insert($record);
         }
 
-        $records = Capsule::table('sample')->select('t_value');
-        $expected = Capsule::table('sample')->select('t_value')->limit(20)->offset(60)->get();
+        $records = Capsule::table('sample');
+        $expected = Capsule::table('sample')->limit(20)->offset(60)->get();
         $paginatorClass = new Paginator();
 
-        $paginator = $paginatorClass->page(3)->perPage(20)->make($records, 'Eloquent');
+        $paginator = $paginatorClass->page(4)->perPage(20)->make($records, 'Eloquent');
 
         $this->assertEquals(100, $paginator->total(), 'Failed asserting pagination total.');
         $this->assertEquals($expected, $paginator->records(), 'Failed asserting pagination records.');
