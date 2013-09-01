@@ -24,7 +24,7 @@ class LinkCreator {
         $totalPages = $this->configHelper->getTotalPages($totalRecords);
         $pages = $this->getPages($totalRecords, $this->configHelper->getLimit(), $currentPage, $this->configHelper->getMaximumPages());
 
-        $prevLiClass = '';
+        $prevLiClass = 'prev';
         $prevLinkHref = 'javascript:void(0)';
         if ($currentPage == 1) {
             $prevLiClass = 'disabled';
@@ -32,7 +32,7 @@ class LinkCreator {
             $prevLinkHref = '?page='.($currentPage - 1);
         }
 
-        $nextLiClass = '';
+        $nextLiClass = 'next';
         $nextLinkHref = 'javascript:void(0)';
         if ($currentPage == $totalPages) {
             $nextLiClass = 'disabled';
@@ -41,16 +41,16 @@ class LinkCreator {
         }
 
         $output = '<ul class="pagination">';
-        $output .= '<li class="' . $prevLiClass . '"><a class="prev" href="' . $prevLinkHref . '">&laquo;</a></li>';
+        $output .= '<li class="' . $prevLiClass . '"><a href="' . $prevLinkHref . '">&laquo;</a></li>';
         // TODO Append query string
         foreach($pages as $page) {
             $currentClass = $page == $currentPage ? 'active' : '';
             $output .= '<li class="' . $currentClass . '"><a href="?page=' . $page . '">' . $page . '</a></li>';
         }
-        $output .= '<li class="' . $nextLiClass . '"><a class="next" href="' . $nextLinkHref . '">&raquo;</a></li>';
+        $output .= '<li class="' . $nextLiClass . '"><a href="' . $nextLinkHref . '">&raquo;</a></li>';
         $output .= '</ul>';
 
-        return $output;
+        return $this->addInfiniteScroll($output);
     }
 
     protected function addInfiniteScroll($output)
