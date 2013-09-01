@@ -25,6 +25,10 @@ class ConfigHelper {
         if (!isset($this->config['maximumPages'])) {
             $this->config['maximumPages'] = 5;
         }
+
+        if (!isset($this->config['infiniteScroll'])) {
+            $this->config['infiniteScroll'] = false;
+        }
     }
 
     public function getCurrentPage()

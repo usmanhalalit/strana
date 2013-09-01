@@ -39,6 +39,12 @@ class Paginator
         return $this;
     }
 
+    public function infiniteScroll($infiniteScroll)
+    {
+        $this->config['infiniteScroll'] = $infiniteScroll;
+        return $this;
+    }
+
     public function setConfig(Array $config)
     {
         $this->config = $config;
