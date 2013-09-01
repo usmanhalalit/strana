@@ -20,8 +20,9 @@ class Paginator
         $configHelper = new ConfigHelper($this->getConfig());
 
         $recordSet = $this->generate($records, $adapter, $configHelper);
+        $infiniteScroll = new InfiniteScroll(new ViewLoader(), $configHelper);
 
-        $linkCreator = new LinkCreator($configHelper);
+        $linkCreator = new LinkCreator($configHelper, $infiniteScroll);
         $links = $linkCreator->createLinks($recordSet->total());
         $recordSet->setLinks($links);
         return $recordSet;

@@ -7,9 +7,15 @@ class LinkCreator {
      */
     protected $configHelper;
 
-    public function __construct(ConfigHelper $configHelper)
+    /**
+     * @var InfiniteScroll
+     */
+    protected $infiniteScroll;
+
+    public function __construct(ConfigHelper $configHelper, InfiniteScroll $infiniteScroll)
     {
         $this->configHelper = $configHelper;
+        $this->infiniteScroll = $infiniteScroll;
     }
 
     public function createLinks($totalRecords)
@@ -43,6 +49,15 @@ class LinkCreator {
         }
         $output .= '<li class="' . $nextLiClass . '"><a class="next" href="' . $nextLinkHref . '">&raquo;</a></li>';
         $output .= '</ul>';
+
+        return $output;
+    }
+
+    protected function addInfiniteScroll($output)
+    {
+        if ($this->configHelper->getInfiniteScroll()) {
+            $output = $output . $this->infiniteScroll->getJs();
+        }
 
         return $output;
     }

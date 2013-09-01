@@ -51,6 +51,11 @@ class ConfigHelper {
         return $this->config['maximumPages'];
     }
 
+    public function getInfiniteScroll()
+    {
+        return $this->config['infiniteScroll'];
+    }
+
     public function getTotalPages($totalRecords)
     {
         $pages = $totalRecords / $this->getLimit();
