@@ -84,7 +84,7 @@ class PaginatorTest extends TestCase
         }
 
         $paginator = $paginatorClass->page(4)->perPage(10)->make($records, 'Array');
-        $expected = '<ul class="pagination"><li><a class="" href="?page=3">&laquo;</a></li><li class=""><a href="?page=2">2</a></li><li class=""><a href="?page=3">3</a></li><li class="active"><a href="?page=4">4</a></li><li class=""><a href="?page=5">5</a></li><li class=""><a href="?page=6">6</a></li><li><a class="" href="?page=5">&raquo;</a></li></ul>';
+        $expected = '<ul class="pagination"><li class=""><a href="?page=3">&laquo;</a></li><li class=""><a href="?page=2">2</a></li><li class=""><a href="?page=3">3</a></li><li class="active"><a href="?page=4">4</a></li><li class=""><a href="?page=5">5</a></li><li class=""><a href="?page=6">6</a></li><li class=""><a href="?page=5">&raquo;</a></li></ul>';
         $this->assertEquals($expected, (string)$paginator);
     }
 }
