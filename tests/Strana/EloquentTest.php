@@ -1,0 +1,45 @@
+<?php namespace Strana;
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+class EloquentTest extends TestCase
+{
+    public function setUp()
+    {
+        parent::setUp();
+        $capsule = new Capsule;
+
+        $capsule->addConnection([
+                'driver'  => 'sqlite',
+                'database'  => ':memory:',
+            ]);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+    }
+
+    public function testPaginationWithLaravelAdapter()
+    {
+        Capsule::statement("CREATE TABLE sample(
+                       t_key             TEXT     NOT NULL,
+                       t_value           TEXT    NOT NULL
+                    );");
+
+        for ($i = 1; $i <= 100; $i++) {
+            $record = array(
+                't_key' => 'Key ' . $i,
+                't_value' => 'Value ' . $i,
+            );
+
+            Capsule::table('sample')->insert($record);
+        }
+
+        $records = Capsule::table('sample')->select('t_value');
+        $expected = Capsule::table('sample')->select('t_value')->limit(20)->offset(60)->get();
+        $paginatorClass = new Paginator();
+
+        $paginator = $paginatorClass->page(3)->perPage(20)->make($records, 'Eloquent');
+
+        $this->assertEquals(100, $paginator->total(), 'Failed asserting pagination total.');
+        $this->assertEquals($expected, $paginator->records(), 'Failed asserting pagination records.');
+    }
+}
