@@ -1,4 +1,4 @@
-<?php namespace Strana;
+<?php namespace Strana\Exceptions;
 
 class Exception extends \Exception
 {
