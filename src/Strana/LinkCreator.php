@@ -44,7 +44,7 @@ class LinkCreator {
         $output .= '<li class="' . $prevLiClass . '"><a href="' . $prevLinkHref . '">&laquo;</a></li>';
         // TODO Append query string
         foreach($pages as $page) {
-            $currentClass = $page == $currentPage ? 'active' : '';
+            $currentClass = $page == $currentPage ? 'active current' : '';
             $output .= '<li class="' . $currentClass . '"><a href="?page=' . $page . '">' . $page . '</a></li>';
         }
         $output .= '<li class="' . $nextLiClass . '"><a href="' . $nextLinkHref . '">&raquo;</a></li>';
