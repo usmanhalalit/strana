@@ -28,13 +28,15 @@ class EloquentAdapter implements CollectionAdapter{
 
     public function slice()
     {
+        $records = clone($this->records);
         $limit = $this->configHelper->getLimit();
         $offset = $this->configHelper->getOffset();
-        return $this->records->limit($limit)->offset($offset)->get();
+        return $records->limit($limit)->offset($offset)->get();
     }
 
     public function total()
     {
-        return $this->records->count();
+        $records = clone($this->records);
+        return $records->count();
     }
 }
