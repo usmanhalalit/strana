@@ -29,13 +29,13 @@ class PixieAdapter implements CollectionAdapter{
     public function slice()
     {
         $records = clone($this->records);
-        return $records->limit($this->configHelper->getLimit())
-                        ->offset($this->configHelper->getOffset())->get();
+        $limit = $this->configHelper->getLimit();
+        $offset = $this->configHelper->getOffset();
+        return $records->limit($limit)->offset($offset)->get();
     }
 
     public function total()
     {
-        // TODO cache count
         $records = clone($this->records);
         return $records->count();
     }
