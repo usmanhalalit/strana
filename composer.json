@@ -22,7 +22,8 @@
 	"require-dev": {
         "phpunit/phpunit": "3.7.*",
         "usmanhalalit/pixie": "1.*@dev",
-        "illuminate/database": "4.1.*@dev"
+        "illuminate/database": "4.1.*@dev",
+        "doctrine/dbal": "2.3.4"
     },
     
 	"autoload":	{
