@@ -27,12 +27,13 @@ class ArrayAdapter implements CollectionAdapter{
 
     public function slice()
     {
-        return array_slice($this->records, $this->configHelper->getOffset(), $this->configHelper->getLimit());
+        $limit = $this->configHelper->getLimit();
+        $offset = $this->configHelper->getOffset();
+        return array_slice($this->records, $offset, $limit);
     }
 
     public function total()
     {
-        // TODO cache count
         return count($this->records);
     }
 }
