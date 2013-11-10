@@ -15,10 +15,7 @@ class EloquentTest extends TestCase
             ]);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
-    }
 
-    public function testPaginationWithLaravelAdapter()
-    {
         Capsule::statement("CREATE TABLE sample(
                        t_key             TEXT     NOT NULL,
                        t_value           TEXT    NOT NULL
@@ -32,7 +29,10 @@ class EloquentTest extends TestCase
 
             Capsule::table('sample')->insert($record);
         }
+    }
 
+    public function testPaginationWithLaravelAdapter()
+    {
         $records = Capsule::table('sample');
         $expected = Capsule::table('sample')->limit(20)->offset(60)->get();
         $paginatorClass = new Paginator();
