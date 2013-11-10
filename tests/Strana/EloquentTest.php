@@ -37,7 +37,7 @@ class EloquentTest extends TestCase
         $expected = Capsule::table('sample')->limit(20)->offset(60)->get();
         $paginatorClass = new Paginator();
 
-        $paginator = $paginatorClass->page(4)->perPage(20)->make($records, 'Eloquent');
+        $paginator = $paginatorClass->page(4)->perPage(20)->make($records);
 
         $this->assertEquals(100, $paginator->total(), 'Failed asserting pagination total.');
         $this->assertEquals($expected, $paginator->records(), 'Failed asserting pagination records.');

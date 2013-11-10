@@ -44,7 +44,7 @@ class DoctrineDbalTest extends TestCase
         /*var_dump($this->qb->execute()->fetchAll());
         exit;*/
         $paginatorClass = new Paginator();
-        $paginator = $paginatorClass->page(4)->perPage(20)->make($records, 'DoctrineDbal');
+        $paginator = $paginatorClass->page(4)->perPage(20)->make($records);
 
         $this->assertEquals(90, $paginator->total(), 'Failed asserting pagination total.');
         $this->assertEquals($expected, $paginator->records(), 'Failed asserting pagination records.');

@@ -68,7 +68,7 @@ class PaginatorTest extends TestCase
         $expected = $qb->table('sample')->select('t_value')->limit(10)->offset(10)->get();
         $paginatorClass = new Paginator();
 
-        $paginator = $paginatorClass->page(2)->perPage(10)->make($records, 'Pixie');
+        $paginator = $paginatorClass->page(2)->perPage(10)->make($records);
 
         $this->assertEquals(100, $paginator->total(), 'Failed asserting pagination total.');
         $this->assertEquals($expected, $paginator->records(), 'Failed asserting pagination records.');
@@ -83,7 +83,7 @@ class PaginatorTest extends TestCase
             $records['Key ' . $i] = 'Value ' . $i;
         }
 
-        $paginator = $paginatorClass->page(4)->perPage(10)->make($records, 'Array');
+        $paginator = $paginatorClass->page(4)->perPage(10)->make($records);
         $expected = '<ul class="pagination"><li class="prev"><a href="?page=3">&laquo;</a></li><li class=""><a href="?page=2">2</a></li><li class=""><a href="?page=3">3</a></li><li class="active current"><a href="?page=4">4</a></li><li class=""><a href="?page=5">5</a></li><li class=""><a href="?page=6">6</a></li><li class="next"><a href="?page=5">&raquo;</a></li></ul>';
         $this->assertEquals($expected, (string)$paginator);
     }
