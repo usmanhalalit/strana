@@ -1,6 +1,7 @@
 <?php namespace Strana\Adapters;
 
 use Strana\ConfigHelper;
+use Strana\Exceptions\InvalidArgumentException;
 use Strana\Interfaces\CollectionAdapter;
 
 class ArrayAdapter implements CollectionAdapter{
@@ -18,7 +19,7 @@ class ArrayAdapter implements CollectionAdapter{
     public function __construct($records, ConfigHelper $configHelper)
     {
         if (!is_array($records)) {
-            throw new \InvalidArgumentException;
+            throw new InvalidArgumentException('ArrayAdapter expects array as records.');
         }
 
         $this->records = $records;

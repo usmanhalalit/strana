@@ -2,6 +2,7 @@
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Strana\ConfigHelper;
+use Strana\Exceptions\InvalidArgumentException;
 use Strana\Interfaces\CollectionAdapter;
 
 class DoctrineDbalAdapter implements CollectionAdapter{
@@ -19,7 +20,7 @@ class DoctrineDbalAdapter implements CollectionAdapter{
     public function __construct($records, ConfigHelper $configHelper)
     {
         if (! $records instanceof QueryBuilder) {
-            throw new \InvalidArgumentException;
+            throw new InvalidArgumentException('Expected Doctrine\DBAL\Query\QueryBuilder.');
         }
 
         $this->records = $records;

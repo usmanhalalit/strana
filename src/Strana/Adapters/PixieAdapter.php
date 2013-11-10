@@ -2,6 +2,7 @@
 
 use Pixie\QueryBuilder\QueryBuilderHandler;
 use Strana\ConfigHelper;
+use Strana\Exceptions\InvalidArgumentException;
 use Strana\Interfaces\CollectionAdapter;
 
 class PixieAdapter implements CollectionAdapter{
@@ -18,8 +19,8 @@ class PixieAdapter implements CollectionAdapter{
 
     public function __construct($records, ConfigHelper $configHelper)
     {
-        if (! $records instanceof QueryBuilderHandler) {
-            throw new \InvalidArgumentException;
+        if (!$records instanceof QueryBuilderHandler) {
+            throw new InvalidArgumentException('Expected Pixie\QueryBuilder\QueryBuilderHandler');
         }
 
         $this->records = $records;

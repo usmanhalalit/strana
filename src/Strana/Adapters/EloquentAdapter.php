@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Query\Builder as EloquentQuery;
 use Strana\ConfigHelper;
+use Strana\Exceptions\InvalidArgumentException;
 use Strana\Interfaces\CollectionAdapter;
 
 class EloquentAdapter implements CollectionAdapter{
@@ -18,8 +19,8 @@ class EloquentAdapter implements CollectionAdapter{
 
     public function __construct($records, ConfigHelper $configHelper)
     {
-        if (! $records instanceof EloquentQuery) {
-            throw new \InvalidArgumentException;
+        if (!$records instanceof EloquentQuery) {
+            throw new InvalidArgumentException('Expected Illuminate\Database\Query\Builder');
         }
 
         $this->records = $records;
