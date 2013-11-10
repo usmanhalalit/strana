@@ -4,6 +4,7 @@ use Strana\Exceptions\InvalidArgumentException;
 use Pixie\QueryBuilder\QueryBuilderHandler as PixieQB;
 use Doctrine\DBAL\Query\QueryBuilder as DoctrineDbalQB;
 use Illuminate\Database\Query\Builder as EloquentQB;
+use Strana\Interfaces\CollectionAdapter;
 
 class Paginator
 {
@@ -12,10 +13,11 @@ class Paginator
      */
     protected $config = array();
 
-    public function __construct()
-    {
+    /**
+     * @var
+     */
+    protected $adapter;
 
-    }
 
     public function make($records, $adapter = null, $config = array())
     {
@@ -23,7 +25,11 @@ class Paginator
         $this->setConfig($config);
         $configHelper = new ConfigHelper($this->getConfig());
 
-        $recordSet = $this->generate($records, $adapter, $configHelper);
+        if ($adapter) {
+            $this->setAdapter($adapter);
+        }
+
+        $recordSet = $this->generate($records,$configHelper);
         $infiniteScroll = new InfiniteScroll(new ViewLoader(), $configHelper);
 
         $linkCreator = new LinkCreator($configHelper, $infiniteScroll);
@@ -60,20 +66,41 @@ class Paginator
         return $this->config;
     }
 
-    protected function generate($records, $adapter, ConfigHelper $configHelper)
+    public function setAdapter($adapter)
     {
-        if (!$adapter || !is_string($adapter)) {
-            // Auto detect
-            $adapter = $this->detectAdapter($records);
+        $this->adapter = $adapter;
+        return $this;
+    }
+
+    public function getAdapter()
+    {
+        return $this->adapter;
+    }
+
+    protected function generate($records, ConfigHelper $configHelper)
+    {
+        $adapter = $this->getAdapter();
+        if (is_object($adapter)) {
+            // User defined custom adapter
+            if (!$adapter instanceof CollectionAdapter) {
+                throw new InvalidArgumentException('Adapter must implement Strana\Interfaces\CollectionAdapter.');
+            }
+            $adapterInstance = $adapter;
+        } else {
+            if (!$adapter || !is_string($adapter)) {
+                // Auto detect
+                $adapter = $this->detectAdapter($records);
+            }
+
+            $adapter = '\\Strana\\Adapters\\' . $adapter . 'Adapter';
+            if (!class_exists($adapter)) {
+                throw new InvalidArgumentException('Adapter not found ' . $adapter . '.' );
+            }
+
+            $adapterInstance = new $adapter($records, $configHelper);
         }
 
-        $adapter = '\\Strana\\Adapters\\' . $adapter . 'Adapter';
 
-        if (!class_exists($adapter)) {
-            throw new InvalidArgumentException('Adapter not found ' . $adapter . '.' );
-        }
-
-        $adapterInstance = new $adapter($records, $configHelper);
         $total = $adapterInstance->total();
         $slicedRecords = $adapterInstance->slice();
         $recordSet = new RecordSet($slicedRecords, $total);
