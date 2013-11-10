@@ -62,7 +62,7 @@ class Paginator
 
     protected function generate($records, $adapter, ConfigHelper $configHelper)
     {
-        if (!is_string($adapter)) {
+        if (!$adapter || !is_string($adapter)) {
             // Auto detect
             $adapter = $this->detectAdapter($records);
         }
