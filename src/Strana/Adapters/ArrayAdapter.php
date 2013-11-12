@@ -16,6 +16,11 @@ class ArrayAdapter implements CollectionAdapter{
      */
     protected $records;
 
+    /**
+     * @param $records
+     * @param ConfigHelper $configHelper
+     * @throws \Strana\Exceptions\InvalidArgumentException
+     */
     public function __construct($records, ConfigHelper $configHelper)
     {
         if (!is_array($records)) {
@@ -26,6 +31,9 @@ class ArrayAdapter implements CollectionAdapter{
         $this->configHelper = $configHelper;
     }
 
+    /**
+     * @return array
+     */
     public function slice()
     {
         $limit = $this->configHelper->getLimit();
@@ -33,6 +41,9 @@ class ArrayAdapter implements CollectionAdapter{
         return array_slice($this->records, $offset, $limit);
     }
 
+    /**
+     * @return int
+     */
     public function total()
     {
         return count($this->records);

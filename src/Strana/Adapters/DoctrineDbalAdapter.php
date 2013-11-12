@@ -17,6 +17,11 @@ class DoctrineDbalAdapter implements CollectionAdapter{
      */
     protected $records;
 
+    /**
+     * @param $records
+     * @param ConfigHelper $configHelper
+     * @throws \Strana\Exceptions\InvalidArgumentException
+     */
     public function __construct($records, ConfigHelper $configHelper)
     {
         if (! $records instanceof QueryBuilder) {
@@ -27,14 +32,23 @@ class DoctrineDbalAdapter implements CollectionAdapter{
         $this->configHelper = $configHelper;
     }
 
+    /**
+     * @return mixed|array
+     */
     public function slice()
     {
         $records = clone($this->records);
         $limit = $this->configHelper->getLimit();
         $offset = $this->configHelper->getOffset();
-        return $records->setMaxResults($limit)->setFirstResult($offset)->execute()->fetchAll();
+        return $records->setMaxResults($limit)
+                        ->setFirstResult($offset)
+                        ->execute()
+                        ->fetchAll();
     }
 
+    /**
+     * @return mixed
+     */
     public function total()
     {
         $records = clone($this->records);

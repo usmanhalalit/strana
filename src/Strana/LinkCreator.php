@@ -12,12 +12,20 @@ class LinkCreator {
      */
     protected $infiniteScroll;
 
+    /**
+     * @param ConfigHelper $configHelper
+     * @param InfiniteScroll $infiniteScroll
+     */
     public function __construct(ConfigHelper $configHelper, InfiniteScroll $infiniteScroll)
     {
         $this->configHelper = $configHelper;
         $this->infiniteScroll = $infiniteScroll;
     }
 
+    /**
+     * @param $totalRecords
+     * @return string
+     */
     public function createLinks($totalRecords)
     {
         $currentPage = $this->configHelper->getCurrentPage();
@@ -53,6 +61,10 @@ class LinkCreator {
         return $this->addInfiniteScroll($output);
     }
 
+    /**
+     * @param $output
+     * @return string
+     */
     protected function addInfiniteScroll($output)
     {
         if (($config = $this->configHelper->getInfiniteScroll())  !== false) {
@@ -62,6 +74,15 @@ class LinkCreator {
         return $output;
     }
 
+    /**
+     * @param $total
+     * @param null $limit
+     * @param null $current
+     * @param null $adjacents
+     * @return array
+     *
+     * http://stackoverflow.com/a/7562895/656489
+     */
     protected function getPages($total, $limit = null, $current = null, $adjacents = null)
     {
         $result = array();

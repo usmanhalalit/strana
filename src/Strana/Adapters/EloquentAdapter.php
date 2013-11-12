@@ -17,6 +17,11 @@ class EloquentAdapter implements CollectionAdapter{
      */
     protected $records;
 
+    /**
+     * @param $records
+     * @param ConfigHelper $configHelper
+     * @throws \Strana\Exceptions\InvalidArgumentException
+     */
     public function __construct($records, ConfigHelper $configHelper)
     {
         if (!$records instanceof EloquentQuery) {
@@ -27,6 +32,9 @@ class EloquentAdapter implements CollectionAdapter{
         $this->configHelper = $configHelper;
     }
 
+    /**
+     * @return array|static[]
+     */
     public function slice()
     {
         $records = clone($this->records);
@@ -35,6 +43,9 @@ class EloquentAdapter implements CollectionAdapter{
         return $records->limit($limit)->offset($offset)->get();
     }
 
+    /**
+     * @return int
+     */
     public function total()
     {
         $records = clone($this->records);

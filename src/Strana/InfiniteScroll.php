@@ -12,12 +12,22 @@ class InfiniteScroll {
      */
     protected $configHelper;
 
+    /**
+     * @param ViewLoader $viewLoader
+     * @param ConfigHelper $configHelper
+     */
     public function __construct(ViewLoader $viewLoader, ConfigHelper $configHelper)
     {
         $this->viewLoader = $viewLoader;
         $this->configHelper = $configHelper;
     }
 
+    /**
+     * @param array $config
+     * @return mixed
+     *
+     * Prepare infinite scroll JavaScript
+     */
     public function getJs(Array $config = array())
     {
         $default = array(

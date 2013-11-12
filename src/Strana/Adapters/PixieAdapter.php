@@ -17,6 +17,11 @@ class PixieAdapter implements CollectionAdapter{
      */
     protected $records;
 
+    /**
+     * @param $records
+     * @param ConfigHelper $configHelper
+     * @throws \Strana\Exceptions\InvalidArgumentException
+     */
     public function __construct($records, ConfigHelper $configHelper)
     {
         if (!$records instanceof QueryBuilderHandler) {
@@ -27,6 +32,9 @@ class PixieAdapter implements CollectionAdapter{
         $this->configHelper = $configHelper;
     }
 
+    /**
+     * @return null|\stdClass
+     */
     public function slice()
     {
         $records = clone($this->records);
@@ -35,6 +43,9 @@ class PixieAdapter implements CollectionAdapter{
         return $records->limit($limit)->offset($offset)->get();
     }
 
+    /**
+     * @return int
+     */
     public function total()
     {
         $records = clone($this->records);

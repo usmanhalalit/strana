@@ -6,12 +6,18 @@ class ConfigHelper {
      */
     protected $config;
 
+    /**
+     * @param array $config
+     */
     public function __construct(Array $config)
     {
         $this->config = $config;
         $this->setDefaults();
     }
 
+    /**
+     * Set default config values
+     */
     protected function setDefaults()
     {
         if (!isset($this->config['perPage'])) {
@@ -31,31 +37,50 @@ class ConfigHelper {
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getCurrentPage()
     {
         return $this->config['page'];
     }
 
+    /**
+     * @return mixed
+     */
     public function getOffset()
     {
         return $this->config['perPage'] * ($this->config['page'] - 1);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLimit()
     {
         return $this->config['perPage'];
     }
 
+    /**
+     * @return mixed
+     */
     public function getMaximumPages()
     {
         return $this->config['maximumPages'];
     }
 
+    /**
+     * @return mixed
+     */
     public function getInfiniteScroll()
     {
         return $this->config['infiniteScroll'];
     }
 
+    /**
+     * @param $totalRecords
+     * @return float
+     */
     public function getTotalPages($totalRecords)
     {
         $pages = $totalRecords / $this->getLimit();
