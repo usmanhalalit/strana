@@ -45,36 +45,6 @@ class PaginatorTest extends TestCase
         $this->assertEquals(100, $paginator->total(), 'Failed asserting pagination total.');
     }
 
-    public function testPaginatorGenerateWithPixieAdapter()
-    {
-        $connection = new \Pixie\Connection('sqlite', array('driver' => 'sqlite', 'database' => ':memory:'));
-        $qb = new \Pixie\QueryBuilder\QueryBuilderHandler($connection);
-
-        $qb->query("CREATE TABLE sample(
-                       t_key             TEXT     NOT NULL,
-                       t_value           TEXT    NOT NULL
-                    );");
-
-        for ($i = 1; $i <= 100; $i++) {
-            $record = array(
-                't_key' => 'Key ' . $i,
-                't_value' => 'Value ' . $i,
-            );
-
-            $qb->table('sample')->insert($record);
-        }
-
-        $records = $qb->table('sample')->select('t_value');
-        $expected = $qb->table('sample')->select('t_value')->limit(10)->offset(10)->get();
-        $paginatorClass = new Paginator();
-
-        $paginator = $paginatorClass->page(2)->perPage(10)->make($records);
-
-        $this->assertEquals(100, $paginator->total(), 'Failed asserting pagination total.');
-        $this->assertEquals($expected, $paginator->records(), 'Failed asserting pagination records.');
-
-    }
-
     public function testHTMLOutput()
     {
         $paginatorClass = new Paginator();
