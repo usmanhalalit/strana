@@ -9,10 +9,10 @@ class EloquentTest extends TestCase
         parent::setUp();
         $capsule = new Capsule;
 
-        $capsule->addConnection([
+        $capsule->addConnection(array(
                 'driver'  => 'sqlite',
                 'database'  => ':memory:',
-            ]);
+            ));
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
 
