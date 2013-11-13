@@ -34,7 +34,8 @@ class PaginatorTest extends TestCase
             'perPage' => 10,
             'page' => 2,
         );
-        $paginator = $paginatorClass->make($records, 'Array', $config);
+        $iasConfig = array('loaderDelay' => 800);
+        $paginator = $paginatorClass->infiniteScroll($iasConfig)->make($records, 'Array', $config);
 
         $expected = array();
         for ($i = 11; $i <= 20; $i++) {
@@ -54,6 +55,12 @@ class PaginatorTest extends TestCase
         }
 
         $paginator = $paginatorClass->page(4)->perPage(10)->make($records);
+
+        // Cover foreach, iterator
+        foreach($paginator as $item) {
+
+        }
+
         $expected = '<ul class="pagination"><li class="prev"><a href="?page=3">&laquo;</a></li><li class=""><a href="?page=2">2</a></li><li class=""><a href="?page=3">3</a></li><li class="active current"><a href="?page=4">4</a></li><li class=""><a href="?page=5">5</a></li><li class=""><a href="?page=6">6</a></li><li class="next"><a href="?page=5">&raquo;</a></li></ul>';
         $this->assertEquals($expected, (string)$paginator);
     }
