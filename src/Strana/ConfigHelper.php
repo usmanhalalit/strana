@@ -25,7 +25,8 @@ class ConfigHelper {
         }
 
         if (!isset($this->config['page'])) {
-            $this->config['page'] = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+            $get = $_GET;
+            $this->config['page'] = isset($get['page']) ? (int) $get['page'] : 1;
         }
 
         if (!isset($this->config['maximumPages'])) {
