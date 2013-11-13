@@ -2,7 +2,7 @@
 ### Smart Pagination Library for PHP
 ___
 
-[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) SensioInsight Trending
+[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) SensioInsight [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/usmanhalalit/strana/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 
 A framework agnostic, smart pagination library for PHP. Just a few lines of code and fully functional pagination is ready.
