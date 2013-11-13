@@ -1,6 +1,6 @@
 {
 	"name": "usmanhalalit/strana",
-	"description": "Paginator for PHP, framework agnostic, with adapters for various DBAL.",
+	"description": "Pagination library for PHP, framework agnostic, with built-in adapters for Doctrine, Eloquent, Pixie and PHP Array.",
 	"homepage": "https://github.com/usmanhalalit/strana",
 	"keywords": ["paginator", "pagination", "page"],
 	"license": "MIT",
