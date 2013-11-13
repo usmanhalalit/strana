@@ -31,7 +31,7 @@ class InfiniteScroll {
     public function getJs(Array $config = array())
     {
         $default = array(
-            'container'             =>  '#container',
+            'container'             =>  '.container',
             'item'                  =>  '.item',
             'pagination'            =>  '.pagination',
             'next'                  =>  '.next a',
