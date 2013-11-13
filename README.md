@@ -5,7 +5,7 @@ ___
 Travis Trending SensioInsight
 
 
-A framework agnostic, smart paginator library for PHP. Just a few lines of code and fully functional pagination is ready.
+A framework agnostic, smart pagination library for PHP. Just a few lines of code and fully functional pagination is ready.
 
 Paginate your records with Strana. Strana will slice(limit and offset) these records, generate pagination links for you and reads page number from them, all automatically.
 
@@ -25,7 +25,7 @@ Paginate your records with Strana. Strana will slice(limit and offset) these rec
 ## Example
 Basically Strana makes it very easy, like the code below:
 ```PHP
-$paginator = $stranaClass->perPage(10)->make($records);
+$paginator = $strana->perPage(10)->make($records);
 ```
 **That's basically it.**
 
@@ -146,7 +146,7 @@ echo '</div>';
 **That's it**, you're done with infinite scrolling.
 ___
 
-Strana uses the awesome [Infinite Ajax Scroll](https://github.com/webcreate/Infinite-Ajax-Scroll) jQuery plugin. All config supported by this plugin can be passed with Strana.
+Strana uses the awesome [Infinite Ajax Scroll](https://github.com/webcreate/Infinite-Ajax-Scroll) jQuery plugin. All config options supported by this plugin can be passed with Strana.
 
 ```PHP
 $iasConfig = array(
