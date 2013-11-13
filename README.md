@@ -55,7 +55,7 @@ Strana uses [Composer](http://getcomposer.org/doc/00-intro.md#installation-nix) 
 
 Learn to use composer and add this to require section (in your composer.json):
 
-    "usmanhalalit/strana": "dev-master"
+    "usmanhalalit/strana": "1.*@dev"
 
 And run:
 
