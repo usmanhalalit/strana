@@ -1,8 +1,5 @@
 <?php namespace Strana;
 
-//use Mockery as m;
-use Viocon\Container;
-
 class TestCase extends \PHPUnit_Framework_TestCase {
 
     public function setUp()
@@ -12,7 +9,7 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 
     public function tearDown()
     {
-        //m::close();
+        
     }
 
     public function callbackMock()
