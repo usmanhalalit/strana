@@ -20,22 +20,16 @@ class ConfigHelper {
      */
     protected function setDefaults()
     {
-        if (!isset($this->config['perPage'])) {
-            $this->config['perPage'] = 25;
-        }
+        $get = $_GET;
+        $page = isset($get['page']) ? (int) $get['page'] : 1;
+        $defaults = array(
+            'perPage'           =>  20,
+            'page'              =>  $page,
+            'maximumPages'      =>  5,
+            'infiniteScroll'    =>  false,
+        );
 
-        if (!isset($this->config['page'])) {
-            $get = $_GET;
-            $this->config['page'] = isset($get['page']) ? (int) $get['page'] : 1;
-        }
-
-        if (!isset($this->config['maximumPages'])) {
-            $this->config['maximumPages'] = 5;
-        }
-
-        if (!isset($this->config['infiniteScroll'])) {
-            $this->config['infiniteScroll'] = false;
-        }
+        $this->config = array_merge($defaults, $this->config);
     }
 
     /**
