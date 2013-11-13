@@ -120,11 +120,20 @@ class Paginator
      * @param $records
      * @param ConfigHelper $configHelper
      * @return RecordSet
-     * @throws Exceptions\InvalidArgumentException
      */
     protected function generate($records, ConfigHelper $configHelper)
     {
-        $adapter = $this->getAdapter();
+        $adapterInstance = $this->makeAdapterInstance($this->getAdapter(), $records, $configHelper);
+
+        $total = $adapterInstance->total();
+        $slicedRecords = $adapterInstance->slice();
+        $recordSet = new RecordSet($slicedRecords, $total);
+
+        return $recordSet;
+    }
+
+    protected function makeAdapterInstance($adapter, $records, $configHelper)
+    {
         if (is_object($adapter)) {
             // User defined custom adapter
             if (!$adapter instanceof CollectionAdapter) {
@@ -145,12 +154,7 @@ class Paginator
             $adapterInstance = new $adapter($records, $configHelper);
         }
 
-
-        $total = $adapterInstance->total();
-        $slicedRecords = $adapterInstance->slice();
-        $recordSet = new RecordSet($slicedRecords, $total);
-
-        return $recordSet;
+        return $adapterInstance;
     }
 
     /**
