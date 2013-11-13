@@ -14,7 +14,7 @@ class PaginatorTest extends TestCase
         $paginator = $paginatorClass->make($records, 'Array');
 
         $expected = array();
-        for ($i = 1; $i <= 25; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $expected['Key ' . $i] = 'Value ' . $i;
         }
 
