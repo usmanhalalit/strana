@@ -15,8 +15,7 @@
 	],
 	
 	"require": {
-		"php": ">=5.3.0",
-        "usmanhalalit/viocon": "1.0.*@dev"
+		"php": ">=5.3.0"
 	},
 	
 	"require-dev": {
