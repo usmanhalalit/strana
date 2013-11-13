@@ -1,7 +1,7 @@
 # Strana
 ### Smart Pagination Library for PHP
 
-[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37/small.png)](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/usmanhalalit/strana/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37/small.png)](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37 "This project passes all Insight checks successfully. This is very rare, and is worthy of the Platinum medal. Congratulations to all the contributors to this project for such a high quality.") [![Scrutinizer Code Quality Score](https://scrutinizer-ci.com/g/usmanhalalit/strana/badges/quality-score.png?s=41d13b5c7a983d1ed3637998d599e8e020e87538)](https://scrutinizer-ci.com/g/usmanhalalit/strana/) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/usmanhalalit/strana/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ___
 
 A framework agnostic, smart pagination library for PHP. Just a few lines of code and fully functional pagination is ready.
