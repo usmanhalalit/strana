@@ -2,7 +2,7 @@
 ### Smart Pagination Library for PHP
 ___
 
-Travis Trending SensioInsight
+[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) SensioInsight Trending
 
 
 A framework agnostic, smart pagination library for PHP. Just a few lines of code and fully functional pagination is ready.
