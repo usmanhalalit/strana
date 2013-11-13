@@ -37,7 +37,7 @@ class LinkCreator {
         if ($currentPage == 1) {
             $prevLiClass = 'disabled';
         } else {
-            $prevLinkHref = '?page='.($currentPage - 1);
+            $prevLinkHref = $this->buildQueryString($currentPage - 1);
         }
 
         $nextLiClass = 'next';
@@ -45,20 +45,27 @@ class LinkCreator {
         if ($currentPage == $totalPages) {
             $nextLiClass = 'disabled';
         } else {
-            $nextLinkHref = '?page='.($currentPage + 1);
+            $nextLinkHref = $this->buildQueryString($currentPage + 1);
         }
 
         $output = '<ul class="pagination">';
         $output .= '<li class="' . $prevLiClass . '"><a href="' . $prevLinkHref . '">&laquo;</a></li>';
-        // TODO Append query string
         foreach($pages as $page) {
             $currentClass = $page == $currentPage ? 'active current' : '';
-            $output .= '<li class="' . $currentClass . '"><a href="?page=' . $page . '">' . $page . '</a></li>';
+            $output .= '<li class="' . $currentClass . '"><a href="' . $this->buildQueryString($page) . '">' . $page . '</a></li>';
         }
         $output .= '<li class="' . $nextLiClass . '"><a href="' . $nextLinkHref . '">&raquo;</a></li>';
         $output .= '</ul>';
 
         return $this->addInfiniteScroll($output);
+    }
+
+    protected function buildQueryString($page)
+    {
+        $get = $_GET;
+        $get['page'] = $page;
+        $queryString = http_build_query($get);
+        return $queryString = '?' . $queryString;
     }
 
     /**
@@ -81,7 +88,7 @@ class LinkCreator {
      * @param null $adjacents
      * @return array
      *
-     * http://stackoverflow.com/a/7562895/656489
+     * Credit: http://stackoverflow.com/a/7562895/656489
      */
     protected function getPages($total, $limit = null, $current = null, $adjacents = null)
     {
