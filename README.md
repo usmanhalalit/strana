@@ -1,9 +1,8 @@
 # Strana
 ### Smart Pagination Library for PHP
+
+[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37/small.png)](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/usmanhalalit/strana/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ___
-
-[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) SensioInsight [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/usmanhalalit/strana/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
 
 A framework agnostic, smart pagination library for PHP. Just a few lines of code and fully functional pagination is ready.
 
