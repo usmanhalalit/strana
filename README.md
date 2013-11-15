@@ -122,7 +122,7 @@ It will produce something like this:
 
 
 ## Infinite Scroll
-Strana comes with out of the box Infinite Scrolling, enable it with just one method.
+Strana comes with out of the box Infinite Scrolling, enable it with just one method. 
 
 ```PHP
 $strana->infiniteScroll()->perPage(10)->make($records);
@@ -150,7 +150,7 @@ Strana uses the awesome [Infinite Ajax Scroll](https://github.com/webcreate/Infi
 ```PHP
 $iasConfig = array(
     'loaderDelay' => 600,
-    'loader'      => '<img src="images/loader.gif"/>',
+    'loader'      => '<img src="images/loader.gif"/>',    
 );
 
 $strana->infiniteScroll($iasConfig)->perPage(10)->make($records);
@@ -223,7 +223,7 @@ class CustomAdapter implements CollectionAdapter{
         $this->records = $records;
         $this->configHelper = $configHelper;
     }
-
+    
     /**
      * This method should limit and offset your records and return.
      */
@@ -232,18 +232,18 @@ class CustomAdapter implements CollectionAdapter{
         // Here you will get the database object passed to Strana.
         //  Clone it.
         $records = clone($this->records);
-
+        
         // Get the limit number from Strana config
         $limit = $this->configHelper->getLimit();
-
+        
         // Get the offset number from Strana config
         $offset = $this->configHelper->getOffset();
-
+        
         // Limit your records
         $records->limit($limit);
         // Offset your records
         $records->offset($offset);
-
+        
         // Return your sliced records
         return $records->get();
     }
@@ -256,7 +256,7 @@ class CustomAdapter implements CollectionAdapter{
         // Here you will get the database object passed to Strana.
         //  Clone it.
         $records = clone($this->records);
-
+        
         // Return your total records count, unsliced.
         return $records->count();
     }
