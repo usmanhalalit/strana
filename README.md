@@ -1,7 +1,7 @@
 # Strana
 ### Smart Pagination Library for PHP
 
-[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37/small.png)](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37 "This project passes all Insight checks successfully. This is very rare, and is worthy of the Platinum medal. Congratulations to all the contributors to this project for such a high quality.") [![Scrutinizer Code Quality Score](https://scrutinizer-ci.com/g/usmanhalalit/strana/badges/quality-score.png?s=41d13b5c7a983d1ed3637998d599e8e020e87538)](https://scrutinizer-ci.com/g/usmanhalalit/strana/) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/usmanhalalit/strana/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://travis-ci.org/usmanhalalit/strana.png?branch=master)](https://travis-ci.org/usmanhalalit/strana) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37/small.png)](https://insight.sensiolabs.com/projects/49091284-bd4e-455d-b821-ad6b33d25d37 "This project passes all Insight checks successfully. This is very rare, and is worthy of the Platinum medal. Congratulations to all the contributors to this project for such a high quality.") [![Scrutinizer Code Quality Score](https://scrutinizer-ci.com/g/usmanhalalit/strana/badges/quality-score.png?s=41d13b5c7a983d1ed3637998d599e8e020e87538)](https://scrutinizer-ci.com/g/usmanhalalit/strana/) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/usmanhalalit/strana/trend.png)](https://bitdeli.com/free "Bitdeli Badge") [![Dependency Status](http://www.versioneye.com/php/usmanhalalit:strana/dev-master/badge.png)](http://www.versioneye.com/php/usmanhalalit:strana/dev-master)
 ___
 
 A framework agnostic, smart pagination library for PHP. Just a few lines of code and fully functional pagination is ready.
@@ -122,7 +122,7 @@ It will produce something like this:
 
 
 ## Infinite Scroll
-Strana comes with out of the box Infinite Scrolling, enable it with just one method. 
+Strana comes with out of the box Infinite Scrolling, enable it with just one method.
 
 ```PHP
 $strana->infiniteScroll()->perPage(10)->make($records);
@@ -150,7 +150,7 @@ Strana uses the awesome [Infinite Ajax Scroll](https://github.com/webcreate/Infi
 ```PHP
 $iasConfig = array(
     'loaderDelay' => 600,
-    'loader'      => '<img src="images/loader.gif"/>',    
+    'loader'      => '<img src="images/loader.gif"/>',
 );
 
 $strana->infiniteScroll($iasConfig)->perPage(10)->make($records);
@@ -223,7 +223,7 @@ class CustomAdapter implements CollectionAdapter{
         $this->records = $records;
         $this->configHelper = $configHelper;
     }
-    
+
     /**
      * This method should limit and offset your records and return.
      */
@@ -232,18 +232,18 @@ class CustomAdapter implements CollectionAdapter{
         // Here you will get the database object passed to Strana.
         //  Clone it.
         $records = clone($this->records);
-        
+
         // Get the limit number from Strana config
         $limit = $this->configHelper->getLimit();
-        
+
         // Get the offset number from Strana config
         $offset = $this->configHelper->getOffset();
-        
+
         // Limit your records
         $records->limit($limit);
         // Offset your records
         $records->offset($offset);
-        
+
         // Return your sliced records
         return $records->get();
     }
@@ -256,7 +256,7 @@ class CustomAdapter implements CollectionAdapter{
         // Here you will get the database object passed to Strana.
         //  Clone it.
         $records = clone($this->records);
-        
+
         // Return your total records count, unsliced.
         return $records->count();
     }
