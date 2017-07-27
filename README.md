@@ -61,6 +61,20 @@ And run:
 
     composer update
 
+**Note** - if you are using Eloquent version *5.3* and above, you should run the following command
+
+
+    "usmanhalalit/strana": "2.*@dev"
+
+
+instead of this one - 
+
+    "usmanhalalit/strana": "1.*@dev"
+
+
+The rest of the commands are same.
+
+
 Library on [Packagist](https://packagist.org/packages/usmanhalalit/strana).
 
 
