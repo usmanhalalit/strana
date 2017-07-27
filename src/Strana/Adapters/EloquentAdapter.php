@@ -1,6 +1,7 @@
 <?php namespace Strana\Adapters;
 
 use Illuminate\Database\Query\Builder as EloquentQuery;
+use Illuminate\Support\Collection;
 use Strana\ConfigHelper;
 use Strana\Exceptions\InvalidArgumentException;
 use Strana\Interfaces\CollectionAdapter;
@@ -40,7 +41,8 @@ class EloquentAdapter implements CollectionAdapter{
         $records = clone($this->records);
         $limit = $this->configHelper->getLimit();
         $offset = $this->configHelper->getOffset();
-        return $records->limit($limit)->offset($offset)->get();
+        $sliced_array = $records->limit($limit)->offset($offset)->get();
+        return $sliced_array instanceof Collection ? $sliced_array->toArray() : $sliced_array;        
     }
 
     /**
